@@ -1,0 +1,14 @@
+/terraform/.terraform/
+/terraform/terraform.tfstate
+/terraform/terraform.tfvars
+/terraform/terraform.tfstate.backup
+/terraform/*.
+/terraform/.terraformrc
+
+.vscode/
+.idea/
+
+\*.swp
+
+.DS\_Store
+\*.log
