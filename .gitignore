@@ -1,14 +1,16 @@
+# Ignore Terraform working directory
 /terraform/.terraform/
-/terraform/terraform.tfstate
-/terraform/terraform.tfvars
-/terraform/terraform.tfstate.backup
-/terraform/*.
+
+# Ignore state files
+/terraform/*.tfstate
+/terraform/*.tfstate.*
+
+# Ignore backup files
+/terraform/*.backup
+
+# Ignore variable files (if sensitive)
+# Comment out if you want to commit them
+/terraform/*.tfvars
+
+# Ignore local Terraform RC file
 /terraform/.terraformrc
-
-.vscode/
-.idea/
-
-\*.swp
-
-.DS\_Store
-\*.log
