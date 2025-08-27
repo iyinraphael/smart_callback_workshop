@@ -1,5 +1,5 @@
 inboundCall:
-  name: Workshop Smart Callback Flow
+  name: "{{flow_name}}"
   description: Minimal starter to publish successfully
   division: Home
   startUpRef: "/inboundCall/tasks/task[Start_10]"
@@ -132,8 +132,8 @@ inboundCall:
                               - createCallback:
                                   name: Create Callback
                                   queue:
-                                    lit:
-                                      name: iyin_servicenow
+                                    lit: 
+                                      name: "{{queue_name}}"
                                   callbackNumber:
                                     exp: ToPhoneNumber(Call.Ani)
                                   calleeName:
@@ -173,12 +173,12 @@ inboundCall:
               processingPrompt:
                 noValue: true
               category:
-                GC Data Actions - Mat Danish:
+                "{{data_action_category}}":
                   dataAction:
-                    getQueueEstimatedWaitTime_iyin:
+                    getQueueEstimatedWaitTime:
                       inputs:
                         queueId:
-                          lit: a265b244-f145-4928-b2ab-25f40b1c19b6
+                          lit: "{{queue_id}}"
                       successOutputs:
                         estimatedWaitedTime:
                           var: Task.estimatedWaitedTime

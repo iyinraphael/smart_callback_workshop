@@ -1,9 +1,17 @@
 variable "queue_name" {
-  default = "Workshop-Callback-Queue"
+  default = "iyin_servicenow"
+}
+
+variable "queue_id" {
+  description = "Queue id"
 }
 
 variable "flow_name" {
   default = "Workshop Smart Callback Flow"
+}
+
+variable "data_action_category" {
+    description = "Data category integration for data action"
 }
 
 variable "genesyscloud_region" {

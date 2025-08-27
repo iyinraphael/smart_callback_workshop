@@ -10,23 +10,17 @@ provider "genesyscloud" {
   aws_region         = var.genesyscloud_region
 }
 
-resource "genesyscloud_routing_queue" "callback_queue" {
-  name                        = var.queue_name
-  acw_wrapup_prompt          = "MANDATORY"
-  wrapup_codes               = [genesyscloud_routing_wrapupcode.callback_wrapup.id]
-}
-
-resource "genesyscloud_routing_wrapupcode" "callback_wrapup" {
-  name = "Callback Requested"
-}
 
 resource "genesyscloud_flow" "inbound_flow" {
-  name        = var.flow_name
-  type        = "inboundcall"
-  filepath          = "${path.module}/../flows/smart_callback_flow.yaml"
-  file_content_hash = filesha256("${path.module}/../flows/smart_callback_flow.yaml")
+  name              = var.flow_name
+  type              = "inboundcall"
+  filepath          = "${path.module}/../flows/workshop_smart_callback_flow_v2-0.yaml"
+  file_content_hash = filesha256("${path.module}/../flows/workshop_smart_callback_flow_v2-0.yaml")
 
-     substitutions = {
-        queue_name = var.queue_name
-     }
+  substitutions = {
+    data_action_category = var.data_action_category
+    queue_id             = var.queue_id
+    flow_name            = var.flow_name
+    queue_name           = var.queue_name
+  }
 }

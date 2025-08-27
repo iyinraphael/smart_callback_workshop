@@ -1,0 +1,46 @@
+{
+  "name": "getQueueEstimatedWaitTime",
+  "integrationType": "purecloud-data-actions",
+  "actionType": "custom",
+  "config": {
+    "request": {
+      "requestUrlTemplate": "/api/v2/routing/queues/${input.queueId}/estimatedwaittime",
+      "requestType": "GET",
+      "headers": {},
+      "requestTemplate": "${input.rawRequest}"
+    },
+    "response": {
+      "translationMap": {
+        "estimatedWaitedTime": "$.results[0].estimatedWaitTimeSeconds"
+      },
+      "translationMapDefaults": {},
+      "successTemplate": "{\"estimatedWaitedTime\" : ${estimatedWaitedTime}}"
+    }
+  },
+  "contract": {
+    "input": {
+      "inputSchema": {
+        "type": "object",
+        "required": [
+          "queueId"
+        ],
+        "properties": {
+          "queueId": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "output": {
+      "successSchema": {
+        "type": "object",
+        "properties": {
+          "estimatedWaitedTime": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  },
+  "secure": false
+}
